@@ -1,0 +1,5 @@
+data
+data_chunk
+best_model_train_48.pth
+__pycache__
+*.pth
