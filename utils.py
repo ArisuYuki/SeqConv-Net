@@ -678,7 +678,7 @@ def compute_area_acc(pred_number_list, label_number_list, acc_number_list):
     return acc, recall, iou
 
 
-def reindex_label(dataloader):
+def generate_map(dataloader):
     labels = []
     for las_path in dataloader.files:
         las_path = os.path.join(dataloader.data_path, las_path)
@@ -692,7 +692,10 @@ def reindex_label(dataloader):
     mapping = {
         old_label: new_label + 1 for new_label, old_label in enumerate(unique_labels)
     }
+    return mapping
 
+
+def reindex_label(dataloader, mapping):
     with tqdm(
         dataloader.files,
         desc="reindex",
